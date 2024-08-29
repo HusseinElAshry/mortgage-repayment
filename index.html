@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
+  <link rel="stylesheet" href="./css/all.min.css" />
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./css/index_style.css" />
+
+  <title>Frontend Mentor | Mortgage repayment calculator</title>
+</head>
+
+<body class="bg-light-blue">
+  <main class="">
+    <h1 class="text-center visually-hidden">mortgage</h1>
+    <section id="mortgage" class=" plus-jakarta-sans">
+      <div class="container ">
+        <div class="row justify-content-center align-items-center vh-100">
+          <div class="bg-white wrapper d-flex justify-content-center align-items-center flex-wrap px-0 rounded-4 rm-round">
+            <div class="item col-lg-6 bg-white rounded-4 rm-round">
+              <div class="item-data py-5 px-3">
+                <form class="text-slate-700 fw-semibold" id="mortgageForm">
+                  <div class="mb-2 d-flex justify-content-md-between align-items-md-center flex-wrap flex-md-row flex-column justify-content-center align-items-start ">
+                    <h3 class="mb-md-0 mb-2 text-dark-card fw-bold">Mortgage Calculator</h3>
+                    <button id="clearButton" type="button" class="clear-all-button text-slate-700 ps-0">Clear All</button>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="mortgageAmountInput" class="form-label">Mortgage Amount</label>
+                    <div class="input-group input-border rounded-2">
+                      <span class="input-group-text bg-light-blue text-slate-700 fw-semibold fs-5" id="basic-addon1">&pound;</span>
+                      <input id="mortgageAmountInput" type="number" class="form-control  fw-semibold fs-5" aria-describedby="basic-addon1" />
+                    </div>
+
+                  </div>
+                  <div class="d-flex justify-content-between align-items-start  flex-wrap">
+                    <div class="mb-3 col-md-5 col-12">
+                      <label for="mortgageTermInput" class="form-label">Mortgage Term</label>
+                      <div class="input-group input-border rounded-2">
+                        <input id="mortgageTermInput" type="number" class="form-control  fw-semibold fs-5" aria-describedby="basic-addon2" />
+                        <span class="input-group-text bg-light-blue text-slate-700 fw-semibold fs-5" id="basic-addon2">years</span>
+                      </div>
+                    </div>
+                    <div class="mb-3 col-md-5 col-12">
+                      <label for="InterestRateInput" class="form-label">Interest Rate</label>
+                      <div class="input-group input-border rounded-2">
+                        <input id="InterestRateInput" type="number" step="0.001" class="form-control  fw-semibold fs-5" aria-describedby="basic-addon3" />
+                        <span class="input-group-text bg-light-blue text-slate-700 fw-semibold fs-5" id="basic-addon3">&percnt;</span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <span >Mortgage Type</span>
+                  <div>
+                    <div class="form-control py-2 my-2   ">
+                      <input class="form-check-input  form-check-input-unchecked" type="radio" name="repaymentSelection" id="repaymentRadio" value="repayment" />
+                      <label class="form-check-label fw-bolder ps-2" for="repaymentRadio">Repayment</label>
+                    </div>
+                    <div class="form-control py-2 mb-3 bg-opacity-50 ">
+                      <input class="form-check-input form-check-input-unchecked" type="radio" name="repaymentSelection" id="interestOnlyRadio" value="interestOnly" />
+                      <label class="form-check-label fw-bolder ps-2" for="interestOnlyRadio">Interest Only</label>
+                    </div>
+                  </div>
+
+                  <div class="text-center text-md-start">
+                    <button type="submit" class="btn rounded-pill bg-lime col-12 col-md-8 col-xl-5" id="calcButton">
+                      <i class="fa fa-solid fa-calculator pe-2"></i>
+                      Calculate Repayments
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="item col-lg-6 bg-white rounded-4 rm-round align-self-center align-self-lg-stretch " >
+              <div id="emptyWorkSpace" class=" h-100 py-5 px-5 item-data rm-round rounded-bottom-left bg-slate-900 d-flex justify-content-center align-items-center flex-column">
+                <img src="./assets/images/illustration-empty.svg" alt="" />
+                <article class="text-white text-center">
+                  <h4 class="mb-3">Results shown here</h4>
+                  <p class="text-slate-300 fw-semibold">
+                    Complete the form and click “calculate repayments” to see
+                    what your monthly repayments would be.
+                  </p>
+                </article>
+              </div>
+              <div id="calcWorkSpace" class="d-none h-100 py-5 px-5 item-data rounded-bottom-left rm-round bg-slate-900 d-flex justify-content-evenly align-items-center flex-column ">
+                <article >
+                  <h3 class="text-white">Your results</h3>
+                  <p class="text-slate-300 fw-semibold">
+                    Your results are shown below based on the information you
+                    provided. To adjust the results, edit the form and click “calculate
+                    repayments” again.
+                  </p>
+                </article>
+                <div class="border-top border-4 border-lime text-slate-300 align-self-start p-4 col-8 rounded-2 mx-auto bg-dark-card my-4">
+                  <article>
+                    <p class="h6">Your monthly repayments</p>
+                    <p id="monthlyRepayment" class="fs-1 fw-bolder text-lime">
+                    </p>
+                  </article>
+                  <hr class="my-4"/>
+                  <article>
+                    <p class="h6">Total you'll repay over the term</p>
+                    <p id="totalRepayment" class="fs-4 fw-bold text-white">
+                    </p>
+                  </article>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+
+</html>
